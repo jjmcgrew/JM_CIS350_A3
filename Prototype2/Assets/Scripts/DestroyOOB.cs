@@ -11,7 +11,14 @@ public class DestroyOOB : MonoBehaviour
 {
     public float topBound = 20;
     public float bottomBound = -10;
-    
+
+    private HealthSystem healthSystemScript;
+
+    private void Start()
+    {
+        healthSystemScript = GameObject.FindGameObjectWithTag("HealthSystem").GetComponent<HealthSystem>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -24,7 +31,9 @@ public class DestroyOOB : MonoBehaviour
         //animal oob
         if (transform.position.z < bottomBound)
         {
-            Debug.Log("Game Over");
+            //grab health system script and call the takedamage method
+            healthSystemScript.TakeDamage();
+
             Destroy(gameObject);
         }
     }
