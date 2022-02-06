@@ -1,0 +1,25 @@
+﻿/*
+ * Josh McGrew
+ * Assignment 3: Prototype 2
+ * detect collisions
+ */
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+//attach to food projectile prefab
+public class DetectCollisions : MonoBehaviour
+{
+    private DisplayScore displayScoreScript;
+
+    private void Start()
+    {
+        displayScoreScript = GameObject.FindGameObjectWithTag("DisplayScoreText").GetComponent<DisplayScore>();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        displayScoreScript.score++;
+        Destroy(other.gameObject);
+        Destroy(gameObject);
+    }
+}
